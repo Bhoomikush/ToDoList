@@ -178,3 +178,17 @@ ul li p{
 .btn:active{
     transform: scale(0.95);
 }
+
+
+.container{
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn{
+    from{
+        opacity:0;
+    }
+    to{
+        opacity:1;
+    }
+}
