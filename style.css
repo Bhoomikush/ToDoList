@@ -174,3 +174,7 @@ ul li p{
 .deleteBtn:hover{
     background-color: #ffc9c9;
 }
+
+.btn:active{
+    transform: scale(0.95);
+}
