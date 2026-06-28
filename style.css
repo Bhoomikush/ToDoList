@@ -4,11 +4,33 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Poppins', sans-serif ;
+    font-family: 'Poppins', sans-serif;
 }
 
 body{
-    background-color: rgb(244, 230, 230);
+    background: linear-gradient(135deg, #ffdee9, #fff1f5);
+    min-height: 100vh;
+    padding-top: 30px;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Soft drifting doodles in the background */
+body::before{
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><text x='10' y='40' font-size='30' fill='%23ffc1d6'>♡</text><text x='110' y='110' font-size='26' fill='%23ffd1e3'>✿</text><text x='40' y='150' font-size='22' fill='%23ffe0eb'>❀</text><text x='140' y='30' font-size='20' fill='%23ffd1e3'>✦</text></svg>");
+    background-repeat: repeat;
+    background-size: 180px 180px;
+    opacity: 0.6;
+    animation: driftBg 30s linear infinite;
+}
+
+@keyframes driftBg{
+    from{ background-position: 0 0; }
+    to{ background-position: 180px 180px; }
 }
 
 .container{
@@ -17,6 +39,14 @@ body{
     justify-content: center;
     align-items: center;
     margin-top: 20px;
+    gap: 20px;
+    position: relative;
+    z-index: 1;
+}
+
+h1{
+    color: #4a3b3b;
+    text-align: center;
 }
 
 .input-container{
@@ -24,14 +54,17 @@ body{
     max-width: 500px;
     text-align: center;
     padding: 20px;
+    background-color: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 4px 15px rgba(255, 105, 180, 0.2);
 }
 
 .input-container input{
-    border: none;
+    border: 1px solid #ffd1e3;
     outline: none;
     padding: 12px;
     margin-block: 12px;
-    border-radius: 4px;
+    border-radius: 8px;
     font-size: 16px;
 }
 
@@ -39,36 +72,105 @@ body{
     width: 70%;
 }
 
+.input-container input[type="text"]:focus{
+    border-color: #ff6f91;
+}
+
 .input-container input[type="button"]{
-    background-color: #3da33d;
+    background-color: #ff6f91;
     color: #fff;
     font-weight: 700;
     margin-left: 8px;
     cursor: pointer;
     padding: 12px 24px;
+    border-radius: 8px;
+    transition: background-color 0.3s;
 }
 
 .input-container input[type="button"]:hover{
-    background-color: #60b160;
+    background-color: #ff4f76;
 }
 
 ul{
     width: 100%;
     max-width: 450px;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
 }
 
 ul li{
     list-style-type: none;
     cursor: pointer;
     margin-block-end: 12px;
-    border-radius: 8px;
-    border: 0.125px solid #a19f9f;
+    border-radius: 12px;
+    border: 1px solid #ffe0eb;
     padding: 6px 12px;
     background-color: #ffffff;
-
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: background-color 0.3s, transform 0.2s;
+    animation: popIn 0.3s ease;
 }
 
+@keyframes popIn{
+    from{
+        opacity: 0;
+        transform: translateY(10px) scale(0.96);
+    }
+    to{
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+ul li:hover{
+    background-color: #fff0f5;
+    transform: translateY(-2px);
+}
+
+ul li p{
+    flex-grow: 1;
+    padding: 2px;
+    color: #4a3b3b;
+}
+
+.btn{
+    border: none;
+    outline: none;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 8px 14px;
+    border-radius: 20px;
+    margin-left: 6px;
+    transition: background-color 0.3s, transform 0.15s;
+}
+
+.btn:hover{
+    transform: scale(1.05);
+}
+
+.editBtn{
+    background-color: #e6f4ea;
+    color: #2e8b57;
+}
+
+.editBtn::before{
+    content: "✏️ ";
+}
+
+.editBtn:hover{
+    background-color: #c8ebd3;
+}
+
+.deleteBtn{
+    background-color: #ffe3e3;
+    color: #d63031;
+}
+
+.deleteBtn::before{
+    content: "🗑️ ";
+}
+
+.deleteBtn:hover{
+    background-color: #ffc9c9;
+}
